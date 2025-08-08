@@ -1,0 +1,472 @@
+{% comment %}
+  DeliWer Dubai Planet Heroes - Hero Section Liquid Template
+  Shopify Dawn Theme Integration Ready
+  
+  Usage: Include this in your Dawn theme's main template file
+  {% include 'deliwer-hero' %}
+{% endcomment %}
+
+<section class="deliwer-hero">
+  <div class="page-width">
+    <div class="hero-grid">
+      <!-- Hero Content -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-icon">🌍</span>
+          <span>Dubai Planet Heroes Initiative</span>
+        </div>
+        
+        <h1 class="hero-title">
+          Trade Your iPhone<br>
+          <span class="hero-highlight">Save Our Planet</span><br>
+          <span class="hero-sub">Get AquaCafe Water Filter</span>
+        </h1>
+        
+        <p class="hero-description">
+          Join thousands of Dubai families transforming old iPhones into pure water solutions. 
+          Get AED 99 AquaCafe starter kit + instant Planet Hero rewards!
+        </p>
+        
+        <!-- Interactive Impact Calculator -->
+        <div class="impact-calculator">
+          <h3>Your Impact Simulator</h3>
+          <div class="calculator-grid">
+            <div class="calc-item">
+              <span class="calc-number" id="bottles-saved">2,847</span>
+              <span class="calc-label">Bottles Prevented</span>
+            </div>
+            <div class="calc-item">
+              <span class="calc-number" id="co2-reduced">156kg</span>
+              <span class="calc-label">CO₂ Reduced</span>
+            </div>
+            <div class="calc-item">
+              <span class="calc-number" id="hero-points">+2,400</span>
+              <span class="calc-label">Hero Points</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- CTA Buttons -->
+        <div class="hero-actions">
+          <button class="btn-primary trade-cta" onclick="startTrade()">
+            <span class="btn-icon">📱</span>
+            Start Your Trade Journey
+          </button>
+          
+          <button class="btn-secondary partnership-cta" onclick="showPartnership()">
+            <span class="btn-icon">🤝</span>
+            Partner with Us (30% Commission)
+          </button>
+        </div>
+        
+        <!-- Trust Indicators -->
+        <div class="trust-indicators">
+          <div class="trust-item">
+            <span class="trust-icon">✅</span>
+            <span>Dubai Municipality Certified</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">🚚</span>
+            <span>Free Pickup & Delivery</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">💧</span>
+            <span>30-Day Water Quality Guarantee</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Hero Visual -->
+      <div class="hero-visual">
+        <div class="trade-visualization">
+          <div class="device-showcase">
+            <img src="{{ 'iphone-mockup.png' | asset_url }}" alt="iPhone Trade-in" class="iphone-mockup">
+            <div class="trade-arrow">
+              <span class="arrow-icon">➜</span>
+              <span class="arrow-text">Transform Into</span>
+            </div>
+            <img src="{{ 'aquacafe-filter.png' | asset_url }}" alt="AquaCafe Filter" class="aquacafe-mockup">
+          </div>
+          
+          <!-- Live Impact Counter -->
+          <div class="live-counter">
+            <h4>Global Impact Live</h4>
+            <div class="counter-stats">
+              <div class="stat">
+                <span class="stat-number">{{ global_users | default: '12,847' }}</span>
+                <span class="stat-label">Heroes Joined</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">{{ bottles_prevented | default: '2,847,291' }}</span>
+                <span class="stat-label">Bottles Prevented</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">{{ countries_active | default: '23' }}</span>
+                <span class="stat-label">Countries Active</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Floating Achievement Popup -->
+    <div class="achievement-popup" id="achievement-popup">
+      <div class="achievement-content">
+        <div class="achievement-icon">🏆</div>
+        <div class="achievement-text">
+          <h4>Achievement Unlocked!</h4>
+          <p>Water Guardian Level 1</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CSS Styles -->
+<style>
+.deliwer-hero {
+  background: linear-gradient(135deg, #1e40af 0%, #06b6d4 50%, #10b981 100%);
+  color: white;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  min-height: 600px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 14px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.hero-title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.hero-highlight {
+  background: linear-gradient(45deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  color: #93c5fd;
+  font-size: 0.9em;
+  display: block;
+  margin-top: 8px;
+}
+
+.hero-description {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.impact-calculator {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 32px;
+  backdrop-filter: blur(10px);
+}
+
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.calc-item {
+  text-align: center;
+}
+
+.calc-number {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+.calc-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #f59e0b, #fbbf24);
+  color: #1f2937;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.trust-indicators {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.trade-visualization {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.device-showcase {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.iphone-mockup, .aquacafe-mockup {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+.trade-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  animation: pulse 2s infinite;
+}
+
+.arrow-icon {
+  font-size: 32px;
+  color: #fbbf24;
+}
+
+.arrow-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.live-counter {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.counter-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.stat-number {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.achievement-popup {
+  position: fixed;
+  top: 100px;
+  right: 24px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+  transform: translateX(400px);
+  transition: transform 0.5s ease;
+  z-index: 1000;
+}
+
+.achievement-popup.show {
+  transform: translateX(0);
+}
+
+.achievement-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+}
+
+.achievement-icon {
+  font-size: 24px;
+}
+
+.achievement-text h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.achievement-text p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+  }
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .calculator-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .device-showcase {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .trade-arrow {
+    transform: rotate(90deg);
+  }
+  
+  .counter-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .trust-indicators {
+    justify-content: center;
+  }
+}
+</style>
+
+<!-- JavaScript for Interactive Elements -->
+<script>
+function startTrade() {
+  // Show achievement popup
+  document.getElementById('achievement-popup').classList.add('show');
+  
+  setTimeout(() => {
+    document.getElementById('achievement-popup').classList.remove('show');
+  }, 3000);
+  
+  // Animate impact numbers
+  animateNumbers();
+  
+  // Redirect to trade form or open modal
+  window.location.href = '/pages/trade-your-iphone';
+}
+
+function showPartnership() {
+  // Show partnership modal or redirect
+  window.location.href = '/pages/partnership-program';
+}
+
+function animateNumbers() {
+  const bottles = document.getElementById('bottles-saved');
+  const co2 = document.getElementById('co2-reduced');
+  const points = document.getElementById('hero-points');
+  
+  // Animate bottles saved
+  let bottleCount = 0;
+  const bottleTarget = 2847;
+  const bottleIncrement = bottleTarget / 50;
+  
+  const bottleTimer = setInterval(() => {
+    bottleCount += bottleIncrement;
+    if (bottleCount >= bottleTarget) {
+      bottleCount = bottleTarget;
+      clearInterval(bottleTimer);
+    }
+    bottles.textContent = Math.floor(bottleCount).toLocaleString();
+  }, 30);
+  
+  // Similar animations for CO2 and points...
+}
+
+// Auto-trigger animations on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Trigger subtle animations
+  setTimeout(() => {
+    document.querySelector('.hero-content').style.opacity = '1';
+    document.querySelector('.hero-content').style.transform = 'translateY(0)';
+  }, 100);
+});
+</script>

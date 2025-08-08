@@ -1,0 +1,686 @@
+{% comment %}
+  DeliWer Partnership Program - Liquid Template
+  Global Agent Network & Restaurant Partnerships
+  30% Commission + NFT Rewards System
+  
+  Usage: Create page template in Shopify Admin
+  Template name: page.partnership-program.liquid
+{% endcomment %}
+
+<section class="partnership-hero">
+  <div class="page-width">
+    <div class="partnership-content">
+      <div class="partnership-badge">
+        <span class="badge-icon">🤝</span>
+        <span>Global Agent Network</span>
+      </div>
+      
+      <h1 class="partnership-title">
+        Earn AED 30+ Per Sale<br>
+        <span class="highlight">Join Planet Heroes Network</span>
+      </h1>
+      
+      <p class="partnership-description">
+        Transform your restaurant, community, or influence into sustainable income. 
+        Help drought-hit regions while earning NFT rewards through our global agent program.
+      </p>
+      
+      <!-- Partnership Types -->
+      <div class="partnership-types">
+        <div class="partnership-card restaurant-card">
+          <div class="card-icon">🍽️</div>
+          <h3>Restaurant Partners</h3>
+          <div class="commission-rate">30% Commission</div>
+          <ul class="benefits-list">
+            <li>Water filtration display in restaurant</li>
+            <li>Customer trade-in collection point</li>
+            <li>Branded AquaCafe station</li>
+            <li>Monthly passive income stream</li>
+            <li>Community sustainability leader status</li>
+          </ul>
+          <button class="apply-btn" onclick="applyRestaurant()">Apply as Restaurant</button>
+        </div>
+        
+        <div class="partnership-card agent-card">
+          <div class="card-icon">🌍</div>
+          <h3>Community Agents</h3>
+          <div class="commission-rate">30% + NFT Rewards</div>
+          <ul class="benefits-list">
+            <li>Personal referral network</li>
+            <li>Family & friends outreach</li>
+            <li>Social media campaigns</li>
+            <li>NFT-based bonus system</li>
+            <li>Global leaderboard recognition</li>
+          </ul>
+          <button class="apply-btn" onclick="applyAgent()">Become an Agent</button>
+        </div>
+        
+        <div class="partnership-card drought-card">
+          <div class="card-icon">💧</div>
+          <h3>Drought Region Partners</h3>
+          <div class="commission-rate">35% + Impact NFTs</div>
+          <ul class="benefits-list">
+            <li>Priority support for water-scarce areas</li>
+            <li>Community impact multiplier</li>
+            <li>Educational program access</li>
+            <li>International recognition</li>
+            <li>Climate resilience building</li>
+          </ul>
+          <button class="apply-btn priority-btn" onclick="applyDroughtRegion()">Join Priority Program</button>
+        </div>
+      </div>
+      
+      <!-- Global Impact Map -->
+      <div class="global-impact">
+        <h2>Current Global Network</h2>
+        <div class="impact-stats">
+          <div class="stat-item">
+            <span class="stat-number">{{ countries_active | default: '23' }}</span>
+            <span class="stat-label">Countries Active</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">{{ partners_count | default: '1,247' }}</span>
+            <span class="stat-label">Active Partners</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">{{ monthly_earnings | default: 'AED 2,847' }}</span>
+            <span class="stat-label">Average Monthly Earnings</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">{{ drought_regions_helped | default: '8' }}</span>
+            <span class="stat-label">Drought Regions Supported</span>
+          </div>
+        </div>
+        
+        <div class="urgency-regions">
+          <h3>Priority Regions (Urgent Water Crisis)</h3>
+          <div class="region-grid">
+            <div class="region-card urgent">
+              <span class="region-flag">🇮🇳</span>
+              <div class="region-info">
+                <h4>Chennai, India</h4>
+                <p class="severity">Severity: Critical (5/5)</p>
+                <p class="population">2.1M people affected</p>
+                <div class="partner-needed">Partners Needed: 50+</div>
+              </div>
+            </div>
+            
+            <div class="region-card urgent">
+              <span class="region-flag">🇿🇦</span>
+              <div class="region-info">
+                <h4>Cape Town, South Africa</h4>
+                <p class="severity">Severity: High (4/5)</p>
+                <p class="population">4.6M people affected</p>
+                <div class="partner-needed">Partners Needed: 75+</div>
+              </div>
+            </div>
+            
+            <div class="region-card moderate">
+              <span class="region-flag">🇦🇺</span>
+              <div class="region-info">
+                <h4>Perth, Australia</h4>
+                <p class="severity">Severity: Moderate (3/5)</p>
+                <p class="population">2.2M people affected</p>
+                <div class="partner-needed">Partners Needed: 30+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- NFT Rewards System -->
+      <div class="nft-rewards">
+        <h2>NFT-Based Rewards System</h2>
+        <p>Earn unique NFTs based on your community impact and sales performance</p>
+        
+        <div class="nft-tiers">
+          <div class="nft-tier">
+            <div class="nft-icon">🥉</div>
+            <h4>Bronze Hero</h4>
+            <p>10+ successful trades</p>
+            <div class="nft-rewards-list">
+              <span>• Exclusive Discord access</span>
+              <span>• Monthly bonus: 5%</span>
+            </div>
+          </div>
+          
+          <div class="nft-tier">
+            <div class="nft-icon">🥈</div>
+            <h4>Silver Guardian</h4>
+            <p>50+ successful trades</p>
+            <div class="nft-rewards-list">
+              <span>• Priority support</span>
+              <span>• Monthly bonus: 10%</span>
+              <span>• Marketing materials</span>
+            </div>
+          </div>
+          
+          <div class="nft-tier">
+            <div class="nft-icon">🥇</div>
+            <h4>Gold Planet Saver</h4>
+            <p>100+ successful trades</p>
+            <div class="nft-rewards-list">
+              <span>• VIP partner status</span>
+              <span>• Monthly bonus: 15%</span>
+              <span>• Exclusive events access</span>
+              <span>• Co-branding opportunities</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Application Form -->
+      <div class="application-form" id="partnership-form">
+        <h2>Join Our Global Network</h2>
+        <form class="partner-form" onsubmit="submitApplication(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="partner-name">Full Name / Business Name</label>
+              <input type="text" id="partner-name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="partner-email">Email Address</label>
+              <input type="email" id="partner-email" name="email" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="partner-country">Country</label>
+              <select id="partner-country" name="country" required>
+                <option value="">Select Country</option>
+                <option value="AE">United Arab Emirates</option>
+                <option value="IN">India</option>
+                <option value="ZA">South Africa</option>
+                <option value="AU">Australia</option>
+                <option value="US">United States</option>
+                <option value="GB">United Kingdom</option>
+                <option value="CA">Canada</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="partner-city">City</label>
+              <input type="text" id="partner-city" name="city" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="partner-type">Partnership Type</label>
+            <select id="partner-type" name="type" required>
+              <option value="">Select Partnership Type</option>
+              <option value="restaurant">Restaurant Partner</option>
+              <option value="agent">Community Agent</option>
+              <option value="drought_region_partner">Drought Region Partner</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="partner-phone">Phone Number (WhatsApp preferred)</label>
+            <input type="tel" id="partner-phone" name="phone">
+          </div>
+          
+          <div class="form-group">
+            <label for="partner-experience">Why do you want to join? How will you help your community?</label>
+            <textarea id="partner-experience" name="experience" rows="4" required></textarea>
+          </div>
+          
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="partner-terms" name="terms" required>
+            <label for="partner-terms">
+              I agree to the <a href="/pages/partner-terms">Partner Terms</a> and commit to promoting sustainable water solutions in my community
+            </label>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <span class="btn-icon">🚀</span>
+            Join Planet Heroes Network
+          </button>
+        </form>
+      </div>
+      
+      <!-- Success Stories -->
+      <div class="success-stories">
+        <h2>Partner Success Stories</h2>
+        <div class="stories-grid">
+          <div class="story-card">
+            <div class="story-avatar">🇦🇪</div>
+            <h4>Ahmed's Cafe - Dubai</h4>
+            <p class="story-earnings">Monthly Earnings: AED 3,200+</p>
+            <p class="story-text">
+              "Started with just 5 customers. Now we process 40+ iPhone trades monthly. 
+              The water station has become a community hub!"
+            </p>
+            <div class="story-stats">
+              <span>156 trades completed</span>
+              <span>Gold Planet Saver NFT</span>
+            </div>
+          </div>
+          
+          <div class="story-card">
+            <div class="story-avatar">🇮🇳</div>
+            <h4>Priya - Chennai Community Leader</h4>
+            <p class="story-earnings">Monthly Earnings: AED 2,800+</p>
+            <p class="story-text">
+              "Helping my drought-affected community get clean water while earning income. 
+              The NFT rewards motivate me to help more families."
+            </p>
+            <div class="story-stats">
+              <span>89 families helped</span>
+              <span>Silver Guardian NFT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.partnership-hero {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
+  color: white;
+  padding: 60px 0 80px 0;
+}
+
+.partnership-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 14px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.partnership-title {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  background: linear-gradient(45deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.partnership-types {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin: 40px 0;
+}
+
+.partnership-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 32px 24px;
+  border-radius: 16px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.partnership-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.commission-rate {
+  background: linear-gradient(45deg, #10b981, #059669);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin: 16px 0;
+  display: inline-block;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.benefits-list li {
+  padding: 8px 0;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.benefits-list li:last-child {
+  border-bottom: none;
+}
+
+.apply-btn {
+  background: linear-gradient(45deg, #f59e0b, #fbbf24);
+  color: #1f2937;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.priority-btn {
+  background: linear-gradient(45deg, #dc2626, #ef4444);
+  color: white;
+  animation: pulse-urgent 2s infinite;
+}
+
+@keyframes pulse-urgent {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+}
+
+.global-impact {
+  margin: 60px 0;
+  text-align: center;
+}
+
+.impact-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.stat-item {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 24px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.stat-number {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.urgency-regions {
+  margin-top: 40px;
+}
+
+.region-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.region-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.region-card.urgent {
+  border-left: 4px solid #ef4444;
+}
+
+.region-card.moderate {
+  border-left: 4px solid #f59e0b;
+}
+
+.region-flag {
+  font-size: 32px;
+}
+
+.severity {
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 12px;
+  margin: 4px 0;
+}
+
+.partner-needed {
+  background: #ef4444;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+.nft-rewards {
+  margin: 60px 0;
+  text-align: center;
+}
+
+.nft-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.nft-tier {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 32px 20px;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.nft-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.nft-rewards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.application-form {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 16px;
+  margin: 40px 0;
+  backdrop-filter: blur(10px);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: auto;
+  margin-top: 2px;
+}
+
+.submit-btn {
+  background: linear-gradient(45deg, #10b981, #059669);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+}
+
+.success-stories {
+  margin-top: 60px;
+}
+
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.story-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 24px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.story-avatar {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.story-earnings {
+  color: #10b981;
+  font-weight: 600;
+  margin: 8px 0;
+}
+
+.story-stats {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .partnership-types {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .impact-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .region-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nft-tiers {
+    grid-template-columns: 1fr;
+  }
+  
+  .stories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+function applyRestaurant() {
+  document.getElementById('partner-type').value = 'restaurant';
+  document.getElementById('partnership-form').scrollIntoView({ behavior: 'smooth' });
+}
+
+function applyAgent() {
+  document.getElementById('partner-type').value = 'agent';
+  document.getElementById('partnership-form').scrollIntoView({ behavior: 'smooth' });
+}
+
+function applyDroughtRegion() {
+  document.getElementById('partner-type').value = 'drought_region_partner';
+  document.getElementById('partnership-form').scrollIntoView({ behavior: 'smooth' });
+}
+
+function submitApplication(event) {
+  event.preventDefault();
+  
+  const formData = new FormData(event.target);
+  const data = Object.fromEntries(formData.entries());
+  
+  // Send to DeliWer partnership API
+  fetch('/api/partnerships', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(result => {
+    alert('Application submitted! We\'ll contact you within 24 hours.');
+    event.target.reset();
+  })
+  .catch(error => {
+    alert('Error submitting application. Please try again.');
+  });
+}
+</script>

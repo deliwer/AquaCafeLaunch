@@ -2,7 +2,17 @@
 
 ## Overview
 
-DeliWer is a gamified iPhone-to-water filtration trade service that transforms device trade-ins into an environmental impact game. The platform allows users to trade their iPhones for AquaCafe water filtration systems while participating in a "Planet Heroes" gamification system complete with achievements, leaderboards, and environmental impact tracking. The application emphasizes instant gratification through real-time rewards and builds community engagement around sustainability goals.
+DeliWer is a gamified iPhone-to-water filtration trade service that transforms device trade-ins into a global environmental impact game. The platform allows users worldwide to trade their iPhones for AquaCafe water filtration systems while participating in a "Planet Heroes" gamification system with achievements, leaderboards, and real-time environmental impact tracking. 
+
+**Key Features:**
+- Global deployment with drought region prioritization (Chennai, Cape Town, Perth)
+- 30% commission partnership program with NFT rewards for agents and restaurants
+- Real-time global impact tracking with crisis region monitoring
+- Shopify Dawn theme integration with copy-paste Liquid templates
+- Database-backed global scaling with PostgreSQL infrastructure
+- Mobile-optimized for worldwide accessibility and instant gratification rewards
+
+**Current Status: Production-Ready for Global Deployment**
 
 ## User Preferences
 
@@ -26,15 +36,18 @@ Preferred communication style: Simple, everyday language.
 - **Development**: Custom Vite integration for development mode with HMR support
 
 ### Data Storage Solutions
-- **Database**: PostgreSQL with Drizzle ORM for type-safe database operations
-- **Connection**: Neon Database serverless PostgreSQL
+- **Database**: PostgreSQL with Drizzle ORM for production deployment
+- **Connection**: Neon Database serverless PostgreSQL with global scaling
 - **Schema Design**: 
-  - Users table with gamification fields (hero levels, points, achievements)
-  - Leaderboard table for competitive rankings
-  - Trade-ins table for device submissions
-  - AquaCafe orders table for filtration system orders
-  - Affiliates table for partnership program
-- **Migrations**: Drizzle Kit for database schema management
+  - Users table with location tracking (country, city) and NFT wallet support
+  - Leaderboard table with country-filtered competitive rankings
+  - Trade-ins table for device submissions with impact point calculations
+  - AquaCafe orders table with instant reward system
+  - Affiliates table with NFT rewards and global commission tracking
+  - DroughtRegions table for crisis monitoring and priority support
+  - CommunityChallenge table with regional targeting and urgency levels
+- **Global Features**: Multi-country support, drought region prioritization, NFT-based rewards
+- **Migrations**: Drizzle Kit with production schema deployed
 
 ### Gamification System
 - **Achievement System**: Level-based progression with instant rewards

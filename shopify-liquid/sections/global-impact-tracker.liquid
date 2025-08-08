@@ -1,0 +1,795 @@
+{% comment %}
+  Global Impact Tracker Section
+  Real-time stats for drought regions and global water crisis
+  Shopify Section for easy drag-and-drop customization
+{% endcomment %}
+
+<section class="global-impact-tracker">
+  <div class="page-width">
+    <div class="impact-header">
+      <h2 class="impact-title">
+        <span class="title-icon">🌍</span>
+        Global Water Crisis Response
+      </h2>
+      <p class="impact-subtitle">
+        Real-time impact tracking across drought-affected regions worldwide
+      </p>
+    </div>
+    
+    <!-- Global Stats Dashboard -->
+    <div class="global-stats">
+      <div class="stat-card primary">
+        <div class="stat-icon">💧</div>
+        <div class="stat-content">
+          <span class="stat-number" id="global-bottles">{{ global_bottles_prevented | default: '2,847,291' }}</span>
+          <span class="stat-label">Bottles Prevented Globally</span>
+        </div>
+      </div>
+      
+      <div class="stat-card secondary">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-content">
+          <span class="stat-number" id="global-heroes">{{ global_heroes | default: '18,472' }}</span>
+          <span class="stat-label">Planet Heroes Joined</span>
+        </div>
+      </div>
+      
+      <div class="stat-card accent">
+        <div class="stat-icon">🌱</div>
+        <div class="stat-content">
+          <span class="stat-number" id="co2-saved">{{ co2_saved_tons | default: '156' }}</span>
+          <span class="stat-label">Tons CO₂ Saved</span>
+        </div>
+      </div>
+      
+      <div class="stat-card urgent">
+        <div class="stat-icon">🚨</div>
+        <div class="stat-content">
+          <span class="stat-number" id="drought-regions">{{ drought_regions_active | default: '8' }}</span>
+          <span class="stat-label">Drought Regions Active</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Drought Crisis Map -->
+    <div class="crisis-map">
+      <h3 class="map-title">Priority Crisis Regions</h3>
+      <div class="regions-grid">
+        <div class="region-card critical">
+          <div class="region-header">
+            <span class="region-flag">🇮🇳</span>
+            <div class="region-info">
+              <h4 class="region-name">Chennai, India</h4>
+              <span class="crisis-level critical-level">CRITICAL</span>
+            </div>
+          </div>
+          <div class="region-stats">
+            <div class="region-stat">
+              <span class="stat-value">2.1M</span>
+              <span class="stat-desc">People Affected</span>
+            </div>
+            <div class="region-stat">
+              <span class="stat-value">247</span>
+              <span class="stat-desc">AquaCafe Units</span>
+            </div>
+            <div class="region-stat">
+              <span class="stat-value">32%</span>
+              <span class="stat-desc">Water Access Improved</span>
+            </div>
+          </div>
+          <div class="region-urgency">
+            <div class="urgency-bar">
+              <div class="urgency-fill" style="width: 95%"></div>
+            </div>
+            <span class="urgency-text">Day Zero Risk: 95%</span>
+          </div>
+          <button class="help-region-btn" onclick="helpRegion('chennai')">
+            Support Chennai Crisis
+          </button>
+        </div>
+        
+        <div class="region-card high">
+          <div class="region-header">
+            <span class="region-flag">🇿🇦</span>
+            <div class="region-info">
+              <h4 class="region-name">Cape Town, South Africa</h4>
+              <span class="crisis-level high-level">HIGH</span>
+            </div>
+          </div>
+          <div class="region-stats">
+            <div class="region-stat">
+              <span class="stat-value">4.6M</span>
+              <span class="stat-desc">People Affected</span>
+            </div>
+            <div class="region-stat">
+              <span class="stat-value">189</span>
+              <span class="stat-desc">AquaCafe Units</span>
+            </div>
+            <div class="region-stat">
+              <span class="stat-value">28%</span>
+              <span class="stat-desc">Water Access Improved</span>
+            </div>
+          </div>
+          <div class="region-urgency">
+            <div class="urgency-bar">
+              <div class="urgency-fill" style="width: 78%"></div>
+            </div>
+            <span class="urgency-text">Day Zero Risk: 78%</span>
+          </div>
+          <button class="help-region-btn" onclick="helpRegion('capetown')">
+            Support Cape Town
+          </button>
+        </div>
+        
+        <div class="region-card moderate">
+          <div class="region-header">
+            <span class="region-flag">🇦🇺</span>
+            <div class="region-info">
+              <h4 class="region-name">Perth, Australia</h4>
+              <span class="crisis-level moderate-level">MODERATE</span>
+            </div>
+          </div>
+          <div class="region-stats">
+            <div class="region-stat">
+              <span class="stat-value">2.2M</span>
+              <span class="stat-desc">People Affected</span>
+            </div>
+            <div class="region-stat">
+              <span class="stat-value">94</span>
+              <span class="stat-desc">AquaCafe Units</span>
+            </div>
+            <div class="region-stat">
+              <span class="stat-value">45%</span>
+              <span class="stat-desc">Water Access Improved</span>
+            </div>
+          </div>
+          <div class="region-urgency">
+            <div class="urgency-bar">
+              <div class="urgency-fill" style="width: 52%"></div>
+            </div>
+            <span class="urgency-text">Day Zero Risk: 52%</span>
+          </div>
+          <button class="help-region-btn" onclick="helpRegion('perth')">
+            Support Perth Region
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Community Challenge Progress -->
+    <div class="community-challenge">
+      <div class="challenge-header">
+        <h3 class="challenge-title">Global Community Challenge</h3>
+        <div class="challenge-timer" id="challenge-timer">
+          <span class="timer-label">Time Remaining:</span>
+          <span class="timer-value">{{ challenge_days_left | default: '23' }} days</span>
+        </div>
+      </div>
+      
+      <div class="challenge-goal">
+        <h4>Goal: Help 50,000 Families Access Clean Water</h4>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ challenge_progress | default: 68 }}%"></div>
+          </div>
+          <div class="progress-stats">
+            <span class="current-progress">{{ families_helped | default: '34,129' }} families helped</span>
+            <span class="target-progress">/ 50,000 target</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="challenge-actions">
+        <button class="join-challenge-btn" onclick="joinChallenge()">
+          <span class="btn-icon">🚀</span>
+          Join Global Challenge
+        </button>
+        <button class="share-challenge-btn" onclick="shareChallenge()">
+          <span class="btn-icon">📢</span>
+          Share Challenge
+        </button>
+      </div>
+    </div>
+    
+    <!-- Real-time Activity Feed -->
+    <div class="activity-feed">
+      <h3 class="feed-title">Live Impact Activity</h3>
+      <div class="feed-container">
+        <div class="feed-item recent">
+          <div class="feed-avatar">🇦🇪</div>
+          <div class="feed-content">
+            <span class="feed-user">Ahmed from Dubai</span>
+            <span class="feed-action">traded iPhone 14 → AquaCafe system</span>
+            <span class="feed-impact">+2,400 bottles prevented</span>
+          </div>
+          <span class="feed-time">2 mins ago</span>
+        </div>
+        
+        <div class="feed-item">
+          <div class="feed-avatar">🇮🇳</div>
+          <div class="feed-content">
+            <span class="feed-user">Priya from Chennai</span>
+            <span class="feed-action">became community partner</span>
+            <span class="feed-impact">Will help 500+ families</span>
+          </div>
+          <span class="feed-time">8 mins ago</span>
+        </div>
+        
+        <div class="feed-item">
+          <div class="feed-avatar">🇿🇦</div>
+          <div class="feed-content">
+            <span class="feed-user">Cape Town Restaurant</span>
+            <span class="feed-action">installed AquaCafe station</span>
+            <span class="feed-impact">Serving 200+ customers daily</span>
+          </div>
+          <span class="feed-time">15 mins ago</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.global-impact-tracker {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  color: white;
+  padding: 80px 0;
+  position: relative;
+}
+
+.impact-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.impact-title {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.title-icon {
+  font-size: 1.2em;
+}
+
+.impact-subtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.global-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 24px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+.stat-card.primary .stat-icon { color: #06b6d4; }
+.stat-card.secondary .stat-icon { color: #10b981; }
+.stat-card.accent .stat-icon { color: #fbbf24; }
+.stat-card.urgent .stat-icon { color: #ef4444; }
+
+.stat-icon {
+  font-size: 36px;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 4px;
+}
+
+.crisis-map {
+  margin-bottom: 60px;
+}
+
+.map-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.regions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.region-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 24px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border-left: 4px solid;
+}
+
+.region-card.critical { border-left-color: #ef4444; }
+.region-card.high { border-left-color: #f59e0b; }
+.region-card.moderate { border-left-color: #10b981; }
+
+.region-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.region-flag {
+  font-size: 32px;
+}
+
+.region-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.crisis-level {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.critical-level { background: #ef4444; }
+.high-level { background: #f59e0b; }
+.moderate-level { background: #10b981; }
+
+.region-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.region-stat {
+  text-align: center;
+  padding: 12px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: #06b6d4;
+}
+
+.stat-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.region-urgency {
+  margin-bottom: 20px;
+}
+
+.urgency-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.urgency-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #f59e0b 50%, #ef4444 100%);
+  transition: width 0.3s ease;
+}
+
+.urgency-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.help-region-btn {
+  width: 100%;
+  background: linear-gradient(45deg, #ef4444, #dc2626);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.help-region-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+.community-challenge {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 20px;
+  margin-bottom: 60px;
+  backdrop-filter: blur(10px);
+}
+
+.challenge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.challenge-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.challenge-timer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.2);
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.timer-value {
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+.challenge-goal h4 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.progress-container {
+  margin-bottom: 24px;
+}
+
+.progress-bar {
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #06b6d4);
+  transition: width 0.5s ease;
+}
+
+.progress-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.current-progress {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.target-progress {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.challenge-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.join-challenge-btn, .share-challenge-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.join-challenge-btn {
+  background: linear-gradient(45deg, #10b981, #059669);
+  color: white;
+}
+
+.share-challenge-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.activity-feed {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 32px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.feed-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feed-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.feed-item.recent {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.feed-avatar {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.feed-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.feed-user {
+  font-weight: 600;
+  color: #06b6d4;
+}
+
+.feed-action {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+}
+
+.feed-impact {
+  color: #10b981;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.feed-time {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .global-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .regions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .region-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .challenge-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .challenge-actions {
+    flex-direction: column;
+  }
+  
+  .feed-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .stat-card {
+    justify-content: center;
+  }
+}
+</style>
+
+<script>
+function helpRegion(regionId) {
+  // Track region support action
+  const regions = {
+    'chennai': { name: 'Chennai, India', urgency: 'critical' },
+    'capetown': { name: 'Cape Town, South Africa', urgency: 'high' },
+    'perth': { name: 'Perth, Australia', urgency: 'moderate' }
+  };
+  
+  const region = regions[regionId];
+  if (region) {
+    alert(`Thank you for supporting ${region.name}! Your trade will be prioritized for this ${region.urgency} region.`);
+    // Redirect to trade form with region priority
+    window.location.href = `/pages/trade-your-iphone?priority=${regionId}`;
+  }
+}
+
+function joinChallenge() {
+  // Join global challenge
+  alert('Welcome to the Global Community Challenge! Your next trade will contribute to helping 50,000 families.');
+  window.location.href = '/pages/trade-your-iphone?challenge=global';
+}
+
+function shareChallenge() {
+  // Share challenge on social media
+  const shareText = 'Join me in the Global Water Crisis Challenge! Help 50,000 families get clean water by trading old iPhones. #PlanetHeroes #WaterCrisis';
+  const shareUrl = window.location.href;
+  
+  if (navigator.share) {
+    navigator.share({
+      title: 'Global Water Crisis Challenge',
+      text: shareText,
+      url: shareUrl
+    });
+  } else {
+    // Fallback for browsers without native sharing
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+    window.open(twitterUrl, '_blank');
+  }
+}
+
+// Auto-update stats every 30 seconds
+setInterval(() => {
+  // Simulate real-time updates
+  updateGlobalStats();
+}, 30000);
+
+function updateGlobalStats() {
+  // In production, this would fetch real data from API
+  const bottlesElement = document.getElementById('global-bottles');
+  const heroesElement = document.getElementById('global-heroes');
+  const co2Element = document.getElementById('co2-saved');
+  const regionsElement = document.getElementById('drought-regions');
+  
+  if (bottlesElement) {
+    const currentBottles = parseInt(bottlesElement.textContent.replace(/,/g, ''));
+    const newBottles = currentBottles + Math.floor(Math.random() * 50) + 10;
+    bottlesElement.textContent = newBottles.toLocaleString();
+  }
+  
+  // Similar updates for other stats...
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Start periodic updates
+  setTimeout(updateGlobalStats, 5000);
+});
+</script>
+
+{% schema %}
+{
+  "name": "Global Impact Tracker",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Global Water Crisis Response"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "Real-time impact tracking across drought-affected regions worldwide"
+    },
+    {
+      "type": "number",
+      "id": "global_bottles_prevented",
+      "label": "Global Bottles Prevented",
+      "default": 2847291
+    },
+    {
+      "type": "number",
+      "id": "global_heroes",
+      "label": "Global Heroes Count",
+      "default": 18472
+    },
+    {
+      "type": "number",
+      "id": "co2_saved_tons",
+      "label": "CO₂ Saved (Tons)",
+      "default": 156
+    },
+    {
+      "type": "number",
+      "id": "drought_regions_active",
+      "label": "Active Drought Regions",
+      "default": 8
+    },
+    {
+      "type": "number",
+      "id": "challenge_days_left",
+      "label": "Challenge Days Remaining",
+      "default": 23
+    },
+    {
+      "type": "number",
+      "id": "families_helped",
+      "label": "Families Helped",
+      "default": 34129
+    },
+    {
+      "type": "range",
+      "id": "challenge_progress",
+      "label": "Challenge Progress (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 68
+    }
+  ],
+  "presets": [
+    {
+      "name": "Global Impact Tracker"
+    }
+  ]
+}
+{% endschema %}
