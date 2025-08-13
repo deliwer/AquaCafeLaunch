@@ -35,7 +35,7 @@ export default function Leaderboard() {
   const challengeProgress = challenge ? Math.round((challenge.currentAmount / challenge.targetAmount) * 100) : 80;
 
   return (
-    <section className="py-20 bg-gray-800">
+    <section id="leaderboard" className="py-20 bg-gray-800">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">

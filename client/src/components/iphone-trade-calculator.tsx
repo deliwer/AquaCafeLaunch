@@ -74,7 +74,7 @@ export default function IPhoneTradeCalculator() {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900/20 to-emerald-900/20">
+    <section id="trade-calculator" className="py-16 bg-gradient-to-br from-slate-900 via-blue-900/20 to-emerald-900/20">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
@@ -271,9 +271,12 @@ export default function IPhoneTradeCalculator() {
                       </div>
                     </div>
 
-                    <Button className="w-full bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-semibold py-3">
+                    <Button 
+                      onClick={() => document.getElementById('aquacafe-service')?.scrollIntoView({ behavior: 'smooth' })}
+                      className="w-full bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-semibold py-3"
+                    >
                       <Award className="h-4 w-4 mr-2" />
-                      Proceed with Trade
+                      View AquaCafe Service
                     </Button>
                   </div>
                 ) : (

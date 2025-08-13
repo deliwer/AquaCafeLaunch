@@ -106,7 +106,7 @@ export default function ProfessionalTutorial() {
     .reduce((total, step) => total + step.points, 0);
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <section id="professional-tutorial" className="py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
@@ -181,7 +181,18 @@ export default function ProfessionalTutorial() {
 
                 <div className="flex gap-4">
                   <Button
-                    onClick={handleComplete}
+                    onClick={() => {
+                      handleComplete();
+                      if (currentStep === 1) {
+                        document.getElementById('starter-kit-flow')?.scrollIntoView({ behavior: 'smooth' });
+                      } else if (currentStep === 2) {
+                        document.getElementById('trade-calculator')?.scrollIntoView({ behavior: 'smooth' });
+                      } else if (currentStep === 4) {
+                        document.getElementById('partnership-program')?.scrollIntoView({ behavior: 'smooth' });
+                      } else if (currentStep === 5) {
+                        document.getElementById('leaderboard')?.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
                     disabled={completedSteps.includes(currentStep)}
                     className="bg-emerald-600 hover:bg-emerald-700 text-white"
                   >

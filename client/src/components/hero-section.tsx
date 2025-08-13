@@ -102,11 +102,18 @@ export default function HeroSection() {
           
           {/* Professional CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <Button 
+              onClick={() => document.getElementById('starter-kit-flow')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
               <Target className="h-5 w-5 mr-2" />
               Start AED 99 Program
             </Button>
-            <Button variant="outline" className="bg-slate-800/50 hover:bg-slate-700/50 border-2 border-emerald-500/50 hover:border-emerald-500 px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300 backdrop-blur-sm">
+            <Button 
+              variant="outline" 
+              onClick={() => document.getElementById('leaderboard')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-slate-800/50 hover:bg-slate-700/50 border-2 border-emerald-500/50 hover:border-emerald-500 px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300 backdrop-blur-sm"
+            >
               <Trophy className="h-5 w-5 mr-2 text-emerald-500" />
               Join 12,847 Professionals
             </Button>

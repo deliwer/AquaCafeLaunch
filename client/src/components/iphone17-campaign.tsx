@@ -10,7 +10,7 @@ export default function IPhone17Campaign() {
   const [selectedPlan, setSelectedPlan] = useState<string>("premium");
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-emerald-900">
+    <section id="iphone17-campaign" className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-emerald-900">
       <div className="container mx-auto px-4">
         {/* Campaign Header */}
         <div className="text-center mb-12">
@@ -79,8 +79,12 @@ export default function IPhone17Campaign() {
                   <li className="flex items-center"><Award className="h-4 w-4 mr-2 text-green-400" />2,400 Planet Points</li>
                   <li className="flex items-center"><Gift className="h-4 w-4 mr-2 text-green-400" />5 Lunch Credits (#SayNoToPlastic)</li>
                 </ul>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700" data-testid="button-select-standard">
-                  Select Standard Hero
+                <Button 
+                  onClick={() => document.getElementById('trade-calculator')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full bg-blue-600 hover:bg-blue-700" 
+                  data-testid="button-select-standard"
+                >
+                  Calculate Trade Value
                 </Button>
               </CardContent>
             </Card>
@@ -103,8 +107,12 @@ export default function IPhone17Campaign() {
                   <li className="flex items-center"><Gift className="h-4 w-4 mr-2 text-green-400" />20 Lunch Credits</li>
                   <li className="flex items-center"><Users className="h-4 w-4 mr-2 text-green-400" />Social Media Bonus Multiplier</li>
                 </ul>
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-700" data-testid="button-select-premium">
-                  Select Premium Hero
+                <Button 
+                  onClick={() => document.getElementById('trade-calculator')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full bg-emerald-600 hover:bg-emerald-700" 
+                  data-testid="button-select-premium"
+                >
+                  Calculate Trade Value
                 </Button>
               </CardContent>
             </Card>
@@ -127,8 +135,12 @@ export default function IPhone17Campaign() {
                   <li className="flex items-center"><Users className="h-4 w-4 mr-2 text-green-400" />Restaurant Partnership Access</li>
                   <li className="flex items-center"><Trophy className="h-4 w-4 mr-2 text-green-400" />Leaderboard VIP Status</li>
                 </ul>
-                <Button className="w-full bg-purple-600 hover:bg-purple-700" data-testid="button-select-elite">
-                  Select Elite Champion
+                <Button 
+                  onClick={() => document.getElementById('trade-calculator')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full bg-purple-600 hover:bg-purple-700" 
+                  data-testid="button-select-elite"
+                >
+                  Calculate Trade Value
                 </Button>
               </CardContent>
             </Card>

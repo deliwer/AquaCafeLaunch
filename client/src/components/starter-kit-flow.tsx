@@ -91,7 +91,7 @@ export default function StarterKitFlow() {
 
   if (currentStep === "entry") {
     return (
-      <section className="py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section id="starter-kit-flow" className="py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
@@ -165,7 +165,10 @@ export default function StarterKitFlow() {
                             
                             <Button 
                               className={`w-full bg-gradient-to-r from-${kit.color}-600 to-${kit.color}-700 hover:from-${kit.color}-700 hover:to-${kit.color}-800 text-white font-semibold py-3`}
-                              onClick={() => setCurrentStep("checkout")}
+                              onClick={() => {
+                                setCurrentStep("checkout");
+                                document.getElementById('professional-tutorial')?.scrollIntoView({ behavior: 'smooth' });
+                              }}
                             >
                               <CreditCard className="h-4 w-4 mr-2" />
                               Start with {kit.name}
@@ -260,7 +263,10 @@ export default function StarterKitFlow() {
                 </Select>
               </div>
 
-              <Button className="w-full bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-semibold py-3">
+              <Button 
+                onClick={() => document.getElementById('partnership-program')?.scrollIntoView({ behavior: 'smooth' })}
+                className="w-full bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-semibold py-3"
+              >
                 <Award className="h-4 w-4 mr-2" />
                 Complete Registration & Start Earning Points
               </Button>

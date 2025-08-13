@@ -55,7 +55,7 @@ export default function PartnershipProgram() {
   };
 
   return (
-    <section className="py-20 bg-gray-800">
+    <section id="partnership-program" className="py-20 bg-gray-800">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">

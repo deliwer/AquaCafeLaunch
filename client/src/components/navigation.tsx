@@ -15,10 +15,46 @@ export default function Navigation() {
               DeliWer <span className="text-xs bg-achievement-purple px-2 py-1 rounded-full">HEROES</span>
             </div>
             <div className="hidden md:flex space-x-6">
-              <a href="#" className="hover:text-aqua-500 transition-colors">Trade iPhone</a>
-              <a href="#" className="hover:text-aqua-500 transition-colors">AquaCafe</a>
-              <a href="#" className="hover:text-aqua-500 transition-colors">Heroes</a>
-              <a href="#" className="hover:text-aqua-500 transition-colors">Partners</a>
+              <a 
+                href="#trade-calculator"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('trade-calculator')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="hover:text-emerald-400 transition-colors"
+              >
+                Trade Calculator
+              </a>
+              <a 
+                href="#aquacafe-service"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('aquacafe-service')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="hover:text-emerald-400 transition-colors"
+              >
+                AquaCafe
+              </a>
+              <a 
+                href="#leaderboard"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('leaderboard')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="hover:text-emerald-400 transition-colors"
+              >
+                Heroes
+              </a>
+              <a 
+                href="#partnership-program"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('partnership-program')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="hover:text-emerald-400 transition-colors"
+              >
+                Partners
+              </a>
             </div>
           </div>
           
@@ -30,8 +66,11 @@ export default function Navigation() {
               </div>
               <span className="text-sm">Join Heroes</span>
             </div>
-            <Button className="bg-aqua-500 hover:bg-aqua-600 px-6 py-2 rounded-full font-medium transition-colors">
-              Start Mission
+            <Button 
+              onClick={() => document.getElementById('starter-kit-flow')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-6 py-2 rounded-full font-medium transition-all duration-300 shadow-lg"
+            >
+              Start Journey
             </Button>
           </div>
         </nav>
