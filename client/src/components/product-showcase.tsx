@@ -72,12 +72,21 @@ export default function ProductShowcase() {
   };
 
   return (
-    <section className="py-20 bg-gray-900">
+    <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900/10">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-display font-bold mb-4">💧 AQUACAFE STARTER KIT</h2>
-            <p className="text-xl text-gray-300">Transform your home into an eco-fortress with Dubai's premium water filtration system</p>
+            <div className="inline-flex items-center bg-emerald-600/20 border border-emerald-500/30 rounded-full px-6 py-3 mb-6">
+              <span className="text-emerald-500 mr-2">💧</span>
+              <span className="text-sm font-medium tracking-wide">PROFESSIONAL WATER SYSTEMS</span>
+            </div>
+            <h2 className="text-4xl font-display font-bold mb-4 text-white">
+              AquaCafe Premium Service
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Professional-grade water filtration systems designed for Dubai's business leaders. 
+              Start your environmental impact with our proven AED 99 entry program.
+            </p>
           </div>
           
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -110,13 +119,17 @@ export default function ProductShowcase() {
             
             {/* Product Details */}
             <div className="space-y-6">
-              {/* Pricing & Value */}
-              <Card className="bg-gradient-to-br from-aqua-500/10 to-achievement-green/10 border-aqua-500/30">
+              {/* Professional Pricing */}
+              <Card className="bg-gradient-to-br from-emerald-600/20 to-blue-600/20 border-emerald-500/50 backdrop-blur-sm">
                 <CardContent className="p-8">
                   <div className="text-center mb-6">
-                    <div className="text-6xl font-display font-bold text-aqua-500 mb-2">AED 99</div>
-                    <div className="text-lg text-gray-300 line-through">Starter Kit (Normally AED 399)</div>
-                    <div className="text-sm text-achievement-gold font-bold">75% OFF Launch Special!</div>
+                    <div className="text-6xl font-display font-bold bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent mb-2">
+                      AED 99
+                    </div>
+                    <div className="text-lg text-gray-300 line-through">Professional Entry (Normally AED 399)</div>
+                    <div className="bg-emerald-600 text-white px-4 py-2 rounded-full text-sm font-bold inline-block">
+                      75% OFF Professional Launch
+                    </div>
                   </div>
                   
                   {/* Value Proposition */}
