@@ -5,14 +5,18 @@
 DeliWer is a gamified iPhone-to-water filtration trade service that transforms device trade-ins into a global environmental impact game. The platform allows users worldwide to trade their iPhones for AquaCafe water filtration systems while participating in a "Planet Heroes" gamification system with achievements, leaderboards, and real-time environmental impact tracking. 
 
 **Key Features:**
+- 🚀 iPhone 17 Launch Campaign with First 100 Heroes exclusive rewards
+- Professional gamification system designed for Dubai's business community  
+- Climate contribution tracking with #SayNoToPlastic lunch credit system
+- Kangen K8 water filtration upgrades for premium trade-ins
+- Real-time leaderboard competition with carbon/plastic impact metrics
+- Social media integration with LinkedIn/Instagram bonus multipliers
+- Restaurant partnership network for lunch credits and agent commissions
 - Global deployment with drought region prioritization (Chennai, Cape Town, Perth)
-- 30% commission partnership program with NFT rewards for agents and restaurants
-- Real-time global impact tracking with crisis region monitoring
-- Shopify Dawn theme integration with copy-paste Liquid templates
 - Database-backed global scaling with PostgreSQL infrastructure
 - Mobile-optimized for worldwide accessibility and instant gratification rewards
 
-**Current Status: Production-Ready for Global Deployment**
+**Current Status: iPhone 17 Launch Campaign Active - Production-Ready for Global Deployment**
 
 ## User Preferences
 
@@ -51,10 +55,14 @@ Preferred communication style: Simple, everyday language.
 
 ### Gamification System
 - **Achievement System**: Level-based progression with instant rewards
-- **Point System**: Environmental impact translated to game points
-- **Leaderboard**: Real-time community rankings
+- **Point System**: Environmental impact translated to game points with iPhone 17 bonuses
+- **Leaderboard**: Real-time community rankings with climate contribution tracking
 - **Instant Gratification**: Immediate feedback and rewards upon actions
 - **Community Challenges**: Collective goals with progress tracking
+- **iPhone 17 Campaign**: First 100 Heroes program with exclusive VIP rewards
+- **Climate Tracking**: Personal carbon/plastic impact dashboard with professional metrics
+- **Social Rewards**: LinkedIn sharing bonuses and restaurant lunch credit system
+- **Professional Appeal**: Mature gamification targeting Dubai business professionals
 
 ### Form Handling & Validation
 - **Forms**: React Hook Form with Zod schema validation

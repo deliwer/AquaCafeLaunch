@@ -1,5 +1,7 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
+import IPhone17Campaign from "@/components/iphone17-campaign";
+import ClimateContribution from "@/components/climate-contribution";
 import Leaderboard from "@/components/leaderboard";
 import AchievementSystem from "@/components/achievement-system";
 import InteractiveElements from "@/components/interactive-elements";
@@ -12,6 +14,8 @@ export default function Home() {
     <div className="bg-gray-900 text-white font-sans">
       <Navigation />
       <HeroSection />
+      <IPhone17Campaign />
+      <ClimateContribution />
       <Leaderboard />
       <AchievementSystem />
       <InteractiveElements />

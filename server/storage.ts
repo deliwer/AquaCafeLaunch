@@ -180,6 +180,8 @@ export class DatabaseStorage implements IStorage {
 
   private calculateTradeValue(model: string, condition: string): number {
     const baseValues: Record<string, number> = {
+      "iPhone 17": 2400, // Premium for new iPhone 17
+      "iPhone 16": 2000,
       "iPhone 15": 1800,
       "iPhone 14": 1500,
       "iPhone 13": 1200,
@@ -202,14 +204,16 @@ export class DatabaseStorage implements IStorage {
 
   private calculateImpactPoints(model: string): number {
     const pointsMap: Record<string, number> = {
-      "iPhone 15": 2800,
-      "iPhone 14": 2600,
-      "iPhone 13": 2400,
-      "iPhone 12": 2200,
-      "iPhone 11": 2000,
+      "iPhone 17": 5760, // Premium points for iPhone 17
+      "iPhone 16": 4800,
+      "iPhone 15": 4320,
+      "iPhone 14": 3600,
+      "iPhone 13": 2880,
+      "iPhone 12": 2160,
+      "iPhone 11": 1440,
     };
 
-    return pointsMap[model] || 1500;
+    return pointsMap[model] || 1200;
   }
 
   async getTradeIn(id: string): Promise<TradeIn | undefined> {

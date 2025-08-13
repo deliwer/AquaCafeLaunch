@@ -14,6 +14,14 @@ export const users = pgTable("users", {
   heroType: text("hero_type"), // Water Guardian, Eco Warrior, Family Protector, Planet Saver
   achievements: jsonb("achievements").$type<string[]>().default([]),
   nftWallet: text("nft_wallet"), // For NFT-based rewards
+  isFirstHundredHero: boolean("is_first_hundred_hero").default(false),
+  climateContribution: jsonb("climate_contribution").$type<{
+    carbonSaved: number; // kg CO2
+    plasticPrevented: number; // bottles
+    lunchCredits: number; // free lunches earned
+    sayNoToPlasticStreak: number; // consecutive days
+  }>().default({ carbonSaved: 0, plasticPrevented: 0, lunchCredits: 0, sayNoToPlasticStreak: 0 }),
+  socialMediaShares: integer("social_media_shares").default(0),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -37,6 +45,8 @@ export const tradeIns = pgTable("trade_ins", {
   tradeValue: integer("trade_value").notNull(), // in AED
   status: text("status").default("pending"), // pending, confirmed, completed
   impactPoints: integer("impact_points").default(0),
+  campaignType: text("campaign_type").default("regular"), // regular, iphone17_launch, first_hundred_heroes
+  kangenUpgrade: boolean("kangen_upgrade").default(false), // K8 Kangen Water upgrade
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -88,6 +98,14 @@ export const communityChallenge = pgTable("community_challenge", {
   endDate: timestamp("end_date").notNull(),
   isActive: boolean("is_active").default(true),
   urgencyLevel: integer("urgency_level").default(1), // 1-5 scale for drought/climate urgency
+  challengeType: text("challenge_type").default("general"), // general, iphone17_launch, first_hundred_heroes, save_planet_bucket
+  rewards: jsonb("rewards").$type<{
+    heroPoints: number;
+    badges: string[];
+    lunchCredits: number;
+    kangenUpgrade: boolean;
+    socialMediaBonus: number;
+  }>(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
