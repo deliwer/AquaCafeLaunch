@@ -297,8 +297,7 @@ export class DatabaseStorage implements IStorage {
   async getCurrentChallenge(region?: string): Promise<CommunityChallenge | undefined> {
     if (region) {
       const [challenge] = await db.select().from(communityChallenge)
-        .where(eq(communityChallenge.isActive, true))
-        .where(eq(communityChallenge.region, region))
+        .where(sql`${communityChallenge.isActive} = true AND ${communityChallenge.region} = ${region}`)
         .limit(1);
       return challenge || undefined;
     }
@@ -463,6 +462,14 @@ export class MemStorage implements IStorage {
       currentAmount: 800000,
       endDate: new Date(Date.now() + 23 * 24 * 60 * 60 * 1000), // 23 days from now
       urgencyLevel: 3,
+      challengeType: "general",
+      rewards: {
+        heroPoints: 5000,
+        badges: ["Ramadan Champion"],
+        lunchCredits: 100,
+        kangenUpgrade: false,
+        socialMediaBonus: 500
+      },
       isActive: true,
       createdAt: new Date(),
     };
@@ -488,6 +495,14 @@ export class MemStorage implements IStorage {
       heroLevel: 1,
       heroPoints: 0,
       achievements: [],
+      isFirstHundredHero: false,
+      climateContribution: {
+        carbonSaved: 0,
+        plasticPrevented: 0,
+        lunchCredits: 0,
+        sayNoToPlasticStreak: 0
+      },
+      socialMediaShares: 0,
       createdAt: new Date(),
     };
     this.users.set(id, user);
@@ -551,6 +566,8 @@ export class MemStorage implements IStorage {
       tradeValue,
       impactPoints,
       status: "pending",
+      campaignType: "regular",
+      kangenUpgrade: false,
       createdAt: new Date(),
     };
 

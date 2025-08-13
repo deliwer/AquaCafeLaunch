@@ -237,14 +237,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { userId, platform, achievementType } = req.body;
       
       // Bonus points for social media sharing
-      const bonusPoints = {
+      const bonusPoints: Record<string, number> = {
         "linkedin": 200,
         "instagram": 150,
         "twitter": 100,
         "facebook": 100
       };
       
-      const points = bonusPoints[platform.toLowerCase()] || 50;
+      const points = bonusPoints[platform.toLowerCase() as keyof typeof bonusPoints] || 50;
       
       res.json({
         success: true,
