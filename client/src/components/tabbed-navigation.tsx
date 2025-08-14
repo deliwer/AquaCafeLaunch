@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import OnboardingTutorial from "@/components/onboarding-tutorial";
+import TradeInMenu from "@/components/trade-in-menu";
 import { 
   Home, 
   Droplets, 
@@ -14,8 +16,10 @@ import {
   X,
   Sparkles,
   Target,
-  Trophy
+  Trophy,
+  Smartphone
 } from "lucide-react";
+import mobilePurificationHero from "@assets/mobile-water-purification-hero_1755138902432.jpg";
 
 // Import page components
 import DubaiMissionDashboard from "@/components/dubai-mission-dashboard";
@@ -40,6 +44,27 @@ interface TabNavigationProps {
 export default function TabbedNavigation({ className = "" }: TabNavigationProps) {
   const [activeTab, setActiveTab] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [hasSeenTutorial, setHasSeenTutorial] = useState(false);
+
+  useEffect(() => {
+    // Show tutorial on first visit
+    const tutorialSeen = localStorage.getItem('deliler-tutorial-seen');
+    if (!tutorialSeen) {
+      setShowTutorial(true);
+    } else {
+      setHasSeenTutorial(true);
+    }
+  }, []);
+
+  const handleTutorialComplete = () => {
+    localStorage.setItem('deliler-tutorial-seen', 'true');
+    setHasSeenTutorial(true);
+  };
+
+  const openTutorial = () => {
+    setShowTutorial(true);
+  };
 
   const tabs = [
     {
@@ -48,6 +73,13 @@ export default function TabbedNavigation({ className = "" }: TabNavigationProps)
       icon: Home,
       badge: "Live",
       badgeColor: "bg-green-900/30 text-green-300 border-green-400/50"
+    },
+    {
+      id: "trade-in",
+      label: "Trade-In",
+      icon: Smartphone,
+      badge: "Instant Quote",
+      badgeColor: "bg-orange-900/30 text-orange-300 border-orange-400/50"
     },
     {
       id: "aquacafe",
@@ -81,8 +113,19 @@ export default function TabbedNavigation({ className = "" }: TabNavigationProps)
 
   const renderHomeContent = () => (
     <div className="space-y-8">
-      {/* Hero Mission Dashboard */}
-      <DubaiMissionDashboard />
+      {/* Hero Section with Background Image */}
+      <section 
+        className="relative min-h-[70vh] bg-cover bg-center bg-no-repeat rounded-lg overflow-hidden"
+        style={{ backgroundImage: `url(${mobilePurificationHero})` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-transparent">
+          <div className="flex items-center justify-center h-full">
+            <div className="max-w-4xl mx-auto px-8">
+              <DubaiMissionDashboard />
+            </div>
+          </div>
+        </div>
+      </section>
       
       {/* Welcome Bonus Banner */}
       <div className="bg-gradient-to-r from-orange-600 to-red-600 py-4 rounded-lg">
@@ -146,6 +189,13 @@ export default function TabbedNavigation({ className = "" }: TabNavigationProps)
     </div>
   );
 
+  const renderTradeInContent = () => (
+    <div className="space-y-8">
+      <TradeInMenu />
+      <IPhoneTradeCalculator />
+    </div>
+  );
+
   const renderAquaCafeContent = () => (
     <div className="space-y-8">
       <StarterKitFlow />
@@ -181,6 +231,8 @@ export default function TabbedNavigation({ className = "" }: TabNavigationProps)
     switch (tabId) {
       case "home":
         return renderHomeContent();
+      case "trade-in":
+        return renderTradeInContent();
       case "aquacafe":
         return renderAquaCafeContent();
       case "rewards":
@@ -231,6 +283,17 @@ export default function TabbedNavigation({ className = "" }: TabNavigationProps)
               <Badge variant="outline" className="bg-red-900/30 text-red-300 border-red-400/50">
                 47 Founding Hero spots left
               </Badge>
+              {hasSeenTutorial && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={openTutorial}
+                  className="text-slate-400 hover:text-white"
+                  data-testid="button-open-tutorial"
+                >
+                  Tutorial
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -241,7 +304,7 @@ export default function TabbedNavigation({ className = "" }: TabNavigationProps)
         {/* Tab List */}
         <div className="border-b border-slate-700 bg-slate-800/30">
           <div className="container mx-auto px-4">
-            <TabsList className="grid w-full grid-cols-5 bg-transparent h-auto p-0 gap-0">
+            <TabsList className="grid w-full grid-cols-6 bg-transparent h-auto p-0 gap-0">
               {tabs.map((tab) => (
                 <TabsTrigger
                   key={tab.id}
@@ -335,6 +398,13 @@ export default function TabbedNavigation({ className = "" }: TabNavigationProps)
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Onboarding Tutorial */}
+      <OnboardingTutorial
+        open={showTutorial}
+        onClose={() => setShowTutorial(false)}
+        onComplete={handleTutorialComplete}
+      />
     </div>
   );
 }
