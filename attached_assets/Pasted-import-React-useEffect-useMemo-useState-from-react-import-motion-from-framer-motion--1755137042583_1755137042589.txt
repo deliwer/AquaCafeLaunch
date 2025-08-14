@@ -1,0 +1,353 @@
+import React, { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { ShoppingCart, Trophy, Leaf, Sparkles, ArrowRight, ShieldCheck, Timer, Gift, Share2, Building2, BarChart3, Users, Globe2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+// Hydrogen React (Storefront API) — works on Vercel with Next.js
+// npm i @shopify/hydrogen-react
+import { ShopifyProvider, useShopQuery, flattenConnection, ProductProvider, MediaFile, AddToCartButton } from "@shopify/hydrogen-react";
+
+/**
+ * ⛳️ PURPOSE
+ * A converting, CSR-ready, AI-first, gamified homepage for DeliWer.
+ * Built to be Shopify Hydrogen-compatible and deployable on Vercel (Next.js + hydrogen-react).
+ *
+ * 🔧 REQUIREMENTS (env)
+ * NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN=
+ * NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN=
+ * NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION=2024-07
+ *
+ * 🎯 KEY SECTIONS
+ * 1) Hero: "Trade your old iPhone for AED 1,000+ in premium water — become a Dubai Planet Hero."
+ * 2) AI Concierge CTA (embed placeholder)
+ * 3) Trust & CSR proof (impact counters + badges)
+ * 4) AquaCafe Starter Kit (pulled from Shopify) with fast checkout
+ * 5) Leaderboard (Firebase placeholder) + Referral CTA
+ * 6) CSR Partnerships (company challenges) + contact lead form
+ * 7) UN SDGs alignment + measurable impact
+ * 8) Footer with quick links
+ *
+ * 🧠 NOTES
+ * - Replace placeholder fetchers with your real endpoints (Firebase/Hasura/Airtable).
+ * - The page assumes TailwindCSS + shadcn/ui are configured.
+ * - AI Concierge can be embedded via a component or 3rd party widget.
+ */
+
+const STORE_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN as string;
+const STOREFRONT_TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN as string;
+const API_VERSION = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION || "2024-07";
+
+// ---------- Helpers ----------
+const Container: React.FC<React.PropsWithChildren<{ className?: string }>> = ({ className, children }) => (
+  <div className={cn("mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8", className)}>{children}</div>
+);
+
+// Mock impact counters (replace with live API)
+async function fetchImpact() {
+  // TODO: replace with your backend endpoint
+  return {
+    litersSaved: 184320, // cumulative liters of bottled water avoided
+    devicesRepurposed: 1260,
+    co2ReducedKg: 53210,
+  };
+}
+
+// Mock leaderboard data (replace with Firebase)
+async function fetchLeaderboard() {
+  // TODO: replace with Firebase RTDB/Firestore call
+  return [
+    { name: "Zabeel Office Hub", points: 1240 },
+    { name: "JLT Families", points: 980 },
+    { name: "Dubai Marina Heroes", points: 920 },
+    { name: "Baker's Kitchen Crew", points: 860 },
+  ];
+}
+
+// Shopify: query for AquaCafe Starter Kit by handle or collection
+const PRODUCT_BY_HANDLE_QUERY = `#graphql
+  query Product($handle: String!) {
+    product(handle: $handle) {
+      id
+      title
+      description
+      handle
+      featuredImage { url altText }
+      media(first: 4) {
+        edges { node { mediaContentType ... on Image { id image { url altText } } } }
+      }
+      variants(first: 10) {
+        edges { node { id title price { amount currencyCode } availableForSale } }
+      }
+    }
+  }
+`;
+
+function useAquaCafeProduct(handle: string) {
+  const { data, error } = useShopQuery({
+    query: PRODUCT_BY_HANDLE_QUERY,
+    variables: { handle },
+    preload: true,
+  });
+  const product = data?.product ?? null;
+  return { product, error };
+}
+
+// ---------- Sections ----------
+function Hero() {
+  return (
+    <div className="relative overflow-hidden bg-gradient-to-b from-emerald-50 to-white">
+      <Container className="py-16 sm:py-24">
+        <div className="grid items-center gap-10 md:grid-cols-2">
+          <div>
+            <motion.h1 initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-4xl font-extrabold tracking-tight sm:text-5xl">
+              Trade your old iPhone for <span className="underline decoration-wavy decoration-emerald-400">AED 1,000+ in premium water</span>
+            </motion.h1>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Become a <strong>Dubai Planet Hero</strong>: reduce e-waste, skip plastic bottles, and unlock instant rewards. Limited founding spots.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <Button size="lg" className="rounded-2xl px-6">
+                Start My Trade‑in <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button variant="outline" size="lg" className="rounded-2xl">
+                See Impact Dashboard
+              </Button>
+            </div>
+            <div className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2"><ShieldCheck className="h-5 w-5" /> 6‑month warranty</div>
+              <div className="flex items-center gap-2"><Timer className="h-5 w-5" /> 2‑minute valuation</div>
+              <div className="flex items-center gap-2"><Leaf className="h-5 w-5" /> SDG‑aligned</div>
+            </div>
+          </div>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="relative">
+            <div className="rounded-3xl bg-white p-6 shadow-xl ring-1 ring-black/5">
+              {/* AI Concierge placeholder (replace with your component) */}
+              <div className="mb-3 flex items-center gap-2 text-sm font-medium text-emerald-700"><Sparkles className="h-4 w-4" /> AI Concierge</div>
+              <div className="h-56 rounded-2xl border border-dashed p-4 text-sm text-muted-foreground">
+                Ask me your iPhone model—I'll calculate your reward, book pickup, and create your Hero profile.
+              </div>
+              <div className="mt-3 text-xs text-muted-foreground">Embed your agent here (e.g., custom GPT/UI or 3rd‑party widget).</div>
+            </div>
+          </motion.div>
+        </div>
+      </Container>
+    </div>
+  );
+}
+
+function ImpactStrip() {
+  const [impact, setImpact] = useState<{ litersSaved: number; devicesRepurposed: number; co2ReducedKg: number } | null>(null);
+  useEffect(() => { fetchImpact().then(setImpact); }, []);
+  return (
+    <div className="bg-white py-8">
+      <Container>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <Card className="rounded-2xl"><CardContent className="py-6 text-center"><div className="text-3xl font-bold">{impact ? impact.litersSaved.toLocaleString() : "—"}</div><div className="mt-1 text-sm text-muted-foreground">Liters of bottled water avoided</div></CardContent></Card>
+          <Card className="rounded-2xl"><CardContent className="py-6 text-center"><div className="text-3xl font-bold">{impact ? impact.devicesRepurposed.toLocaleString() : "—"}</div><div className="mt-1 text-sm text-muted-foreground">iPhones repurposed</div></CardContent></Card>
+          <Card className="rounded-2xl"><CardContent className="py-6 text-center"><div className="text-3xl font-bold">{impact ? impact.co2ReducedKg.toLocaleString() : "—"}</div><div className="mt-1 text-sm text-muted-foreground">kg CO₂ equivalent reduced</div></CardContent></Card>
+        </div>
+      </Container>
+    </div>
+  );
+}
+
+function ProductShowcase({ handle = "aquacafe-starter-kit" }: { handle?: string }) {
+  const { product } = useAquaCafeProduct(handle);
+  const media = useMemo(() => flattenConnection(product?.media), [product]);
+  const variants = useMemo(() => flattenConnection(product?.variants), [product]);
+  const firstVariant = variants?.[0];
+
+  return (
+    <div className="bg-emerald-50 py-14">
+      <Container>
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="text-2xl font-bold">AquaCafe Starter Kit</h2>
+          <div className="text-sm text-muted-foreground">Certified + warranty + instant rewards</div>
+        </div>
+        <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid grid-cols-2 gap-4">
+            {media?.slice(0, 4).map((m: any) => (
+              <div key={m?.id} className="aspect-square overflow-hidden rounded-2xl bg-white p-2 shadow">
+                <MediaFile data={m} className="h-full w-full rounded-xl object-cover" />
+              </div>
+            )) || (
+              <div className="col-span-2 rounded-2xl bg-white p-10 text-center shadow">Add product media in Shopify</div>
+            )}
+          </div>
+          <div>
+            <Card className="rounded-3xl">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-2xl"><Gift className="h-6 w-6" /> Your Reward Bundle</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-muted-foreground">Trade your old iPhone and receive the AquaCafe kit. No hassle, instant impact.</p>
+                {firstVariant ? (
+                  <ProductProvider data={product} initialVariantId={firstVariant.id}>
+                    <div className="flex items-center justify-between rounded-xl bg-white p-4 shadow">
+                      <div>
+                        <div className="text-sm text-muted-foreground">From</div>
+                        <div className="text-2xl font-semibold">
+                          {firstVariant.price.amount} {firstVariant.price.currencyCode}
+                        </div>
+                      </div>
+                      <AddToCartButton className="rounded-2xl px-6 py-6 text-base">
+                        <ShoppingCart className="mr-2 h-5 w-5" /> Add Reward to Cart
+                      </AddToCartButton>
+                    </div>
+                  </ProductProvider>
+                ) : (
+                  <div className="rounded-xl bg-white p-4 text-sm text-muted-foreground shadow">Connect Shopify & select product handle.</div>
+                )}
+                <ul className="list-inside list-disc text-sm text-muted-foreground">
+                  <li>Live trade‑in video inspection</li>
+                  <li>6‑month warranty</li>
+                  <li>Founding Hero perks & leaderboard points</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </Container>
+    </div>
+  );
+}
+
+function Leaderboard() {
+  const [rows, setRows] = useState<{ name: string; points: number }[]>([]);
+  useEffect(() => { fetchLeaderboard().then(setRows); }, []);
+  return (
+    <div className="bg-white py-14">
+      <Container>
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="text-2xl font-bold flex items-center gap-2"><Trophy className="h-6 w-6" /> Dubai Planet Heroes Leaderboard</h2>
+          <Button variant="outline" className="rounded-2xl">View All</Button>
+        </div>
+        <div className="overflow-hidden rounded-2xl border">
+          <table className="w-full text-left">
+            <thead className="bg-emerald-50">
+              <tr>
+                <th className="px-4 py-3 text-sm font-medium">Rank</th>
+                <th className="px-4 py-3 text-sm font-medium">Team / Community</th>
+                <th className="px-4 py-3 text-sm font-medium">Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r, i) => (
+                <tr key={r.name} className="odd:bg-white even:bg-emerald-50/30">
+                  <td className="px-4 py-3 text-sm">{i + 1}</td>
+                  <td className="px-4 py-3 text-sm">{r.name}</td>
+                  <td className="px-4 py-3 text-sm font-semibold">{r.points.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <Button className="rounded-2xl"><Share2 className="mr-2 h-5 w-5" /> Get My Referral Link</Button>
+          <div className="text-sm text-muted-foreground">Earn points for every friend or teammate who joins.</div>
+        </div>
+      </Container>
+    </div>
+  );
+}
+
+function CSRSection() {
+  return (
+    <div className="bg-emerald-950 py-16 text-white">
+      <Container>
+        <div className="grid gap-10 md:grid-cols-2">
+          <div>
+            <h2 className="text-3xl font-bold">CSR & Partnerships with Purpose</h2>
+            <p className="mt-3 text-emerald-100">
+              Run a company-wide Planet Hero Challenge: convert old iPhones into premium water while tracking liters saved and CO₂ reduced per employee. Co-branded dashboards and verified impact reports included.
+            </p>
+            <ul className="mt-4 space-y-2 text-emerald-100">
+              <li className="flex items-center gap-2"><Building2 className="h-5 w-5" /> Co-branded leaderboards for teams & offices</li>
+              <li className="flex items-center gap-2"><BarChart3 className="h-5 w-5" /> Quarterly verified impact reports</li>
+              <li className="flex items-center gap-2"><Users className="h-5 w-5" /> Employee engagement + rewards</li>
+              <li className="flex items-center gap-2"><Globe2 className="h-5 w-5" /> UN SDGs 6, 12, 13 alignment</li>
+            </ul>
+          </div>
+          <Card className="rounded-3xl bg-white text-emerald-900">
+            <CardHeader>
+              <CardTitle>Partner with DeliWer</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <Input placeholder="Company name" />
+                <Input placeholder="Contact email" />
+                <Input placeholder="Employees / Community size" />
+                <Input placeholder="City / Region" />
+              </div>
+              <Button className="w-full rounded-2xl">Request CSR Pilot</Button>
+              <div className="text-xs text-muted-foreground">
+                We’ll reply within 24 hours with a pilot playbook and live demo access.
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </Container>
+    </div>
+  );
+}
+
+function SDGsStrip() {
+  return (
+    <div className="bg-white py-10">
+      <Container>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <Card className="rounded-2xl"><CardContent className="py-6 text-center"><div className="text-lg font-semibold">SDG 6: Clean Water</div><div className="mt-1 text-sm text-muted-foreground">Every trade‑in expands access to premium water, reducing reliance on bottled water.</div></CardContent></Card>
+          <Card className="rounded-2xl"><CardContent className="py-6 text-center"><div className="text-lg font-semibold">SDG 12: Responsible Consumption</div><div className="mt-1 text-sm text-muted-foreground">Refurbish & reuse iPhones, cutting e‑waste and extending device life.</div></CardContent></Card>
+          <Card className="rounded-2xl"><CardContent className="py-6 text-center"><div className="text-lg font-semibold">SDG 13: Climate Action</div><div className="mt-1 text-sm text-muted-foreground">Track kg CO₂ saved from avoided plastic and optimized logistics.</div></CardContent></Card>
+        </div>
+      </Container>
+    </div>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t bg-white py-10 text-sm">
+      <Container>
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <div className="text-muted-foreground">© {new Date().getFullYear()} DeliWer • Dubai</div>
+          <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
+            <a href="#">Impact Dashboard</a>
+            <a href="#">CSR</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+        </div>
+      </Container>
+    </footer>
+  );
+}
+
+export default function HydrogenHome() {
+  return (
+    <ShopifyProvider storeDomain={STORE_DOMAIN} storefrontToken={STOREFRONT_TOKEN} storefrontApiVersion={API_VERSION}>
+      <main className="min-h-screen bg-white">
+        <Hero />
+        <ImpactStrip />
+        <ProductShowcase />
+        <Leaderboard />
+        <CSRSection />
+        <SDGsStrip />
+        <Footer />
+      </main>
+    </ShopifyProvider>
+  );
+}
+
+/**
+ * 🚀 DEPLOY NOTES (Vercel + Next.js)
+ * 1) Create Next.js App Router project with Tailwind + shadcn/ui.
+ * 2) npm i @shopify/hydrogen-react framer-motion lucide-react
+ * 3) Set env vars in Vercel: NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN, NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN, NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION
+ * 4) Place this file as app/page.tsx or app/(marketing)/page.tsx and ensure UI components exist.
+ * 5) Replace placeholder fetchers with your Firebase endpoints for impact + leaderboard + CSR form handling.
+ * 6) Embed your AI Concierge in <Hero> (replace the dashed box with the live widget/component).
+ * 7) Point your domain and go live.
+ */

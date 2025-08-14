@@ -1,0 +1,74 @@
+```jsx
+import { ShopifyProvider, ProductProvider, useShopQuery, gql, AddToCartButton } from '@shopify/hydrogen-react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+
+export default function HomePage() {
+  const { data } = useShopQuery({
+    query: gql`
+      query {
+        product(handle: "aquacafe-starter-kit") {
+          id
+          title
+          description
+          images(first: 1) { edges { node { url altText } } }
+          variants(first: 1) { edges { node { id price { amount currencyCode } } } }
+        }
+      }
+    `
+  });
+
+  const product = data?.product;
+
+  return (
+    <ShopifyProvider storeDomain={process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN} storefrontToken={process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN} storefrontApiVersion={process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION}>
+      <main className="bg-white text-gray-900">
+        {/* Hero Section - Revenue First */}
+        <section className="text-center py-12 px-6 bg-gradient-to-b from-blue-50 to-white">
+          <motion.h1 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl font-bold">
+            Trade Your Old iPhone → Get AED 1,000+ in Premium Water Delivery
+          </motion.h1>
+          <p className="mt-4 text-lg text-gray-600">Limited Launch Offer — Only 100 Kits at Double Rewards Value</p>
+          <div className="mt-6">
+            {product && (
+              <ProductProvider data={product}>
+                <AddToCartButton variantId={product.variants.edges[0].node.id} quantity={1} className="px-6 py-3 text-lg bg-blue-600 text-white rounded-lg shadow-lg">
+                  Start My Trade-In
+                </AddToCartButton>
+              </ProductProvider>
+            )}
+          </div>
+        </section>
+
+        {/* Trust + CSR Badges */}
+        <section className="py-8 px-6 grid grid-cols-2 md:grid-cols-4 gap-4 items-center">
+          <img src="/logos/sdg.svg" alt="UN SDG" className="h-12 mx-auto" />
+          <img src="/logos/partner1.svg" alt="CSR Partner" className="h-12 mx-auto" />
+          <img src="/logos/partner2.svg" alt="CSR Partner" className="h-12 mx-auto" />
+          <img src="/logos/impact.svg" alt="Impact" className="h-12 mx-auto" />
+        </section>
+
+        {/* Impact Counters */}
+        <section className="bg-gray-50 py-10 text-center">
+          <h2 className="text-2xl font-bold">Your Purchase Creates Real Impact</h2>
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div><span className="text-3xl font-bold">12,500L</span><p>Water Delivered</p></div>
+            <div><span className="text-3xl font-bold">78</span><p>Devices Repurposed</p></div>
+            <div><span className="text-3xl font-bold">1.2t</span><p>CO₂ Avoided</p></div>
+          </div>
+        </section>
+
+        {/* Leaderboard */}
+        <section className="py-10 px-6">
+          <h2 className="text-2xl font-bold text-center">Dubai’s Top Planet Heroes</h2>
+          <ul className="mt-6 max-w-lg mx-auto">
+            <li>🏆 Ali — 3,500L Saved</li>
+            <li>🥈 Sara — 2,800L Saved</li>
+            <li>🥉 Omar — 2,500L Saved</li>
+          </ul>
+        </section>
+      </main>
+    </ShopifyProvider>
+  );
+}
+```

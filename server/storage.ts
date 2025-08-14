@@ -390,6 +390,8 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
+
+
 export class MemStorage implements IStorage {
   private users: Map<string, User>;
   private leaderboard: Map<string, LeaderboardEntry>;
@@ -494,7 +496,9 @@ export class MemStorage implements IStorage {
       city: insertUser.city || "Dubai",
       heroLevel: 1,
       heroPoints: 0,
+      heroType: insertUser.heroType || null,
       achievements: [],
+      nftWallet: insertUser.nftWallet || null,
       isFirstHundredHero: false,
       climateContribution: {
         carbonSaved: 0,
