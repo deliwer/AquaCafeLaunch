@@ -260,10 +260,17 @@ export default function ImpactCalculator() {
                   while providing your family with clean, healthy water.
                 </p>
                 <div className="flex gap-4 justify-center">
-                  <Button className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-3 text-lg font-semibold">
+                  <Button 
+                    onClick={() => window.location.href = '/'}
+                    className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-3 text-lg font-semibold"
+                  >
                     Start Your Trade-In
                   </Button>
-                  <Button variant="outline" className="px-8 py-3 border-emerald-500/50 hover:border-emerald-500 text-emerald-400">
+                  <Button 
+                    variant="outline" 
+                    onClick={() => window.location.href = '/aquacafe-plans'}
+                    className="px-8 py-3 border-emerald-500/50 hover:border-emerald-500 text-emerald-400"
+                  >
                     View AquaCafe Plans
                   </Button>
                 </div>

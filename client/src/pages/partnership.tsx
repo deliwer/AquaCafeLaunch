@@ -386,10 +386,17 @@ export default function Partnership() {
                   Join a movement that's transforming Dubai's environmental landscape while building a profitable business.
                 </p>
                 <div className="flex gap-4 justify-center">
-                  <Button className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-3 text-lg font-semibold">
+                  <Button 
+                    onClick={() => window.location.href = '/'}
+                    className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-3 text-lg font-semibold"
+                  >
                     Schedule Consultation
                   </Button>
-                  <Button variant="outline" className="px-8 py-3 border-emerald-500/50 hover:border-emerald-500 text-emerald-400">
+                  <Button 
+                    variant="outline" 
+                    onClick={() => window.location.href = '/'}
+                    className="px-8 py-3 border-emerald-500/50 hover:border-emerald-500 text-emerald-400"
+                  >
                     Download Partnership Guide
                   </Button>
                 </div>

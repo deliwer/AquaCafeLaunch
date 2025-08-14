@@ -80,7 +80,14 @@ export default function IPhone17Campaign() {
                   <li className="flex items-center"><Gift className="h-4 w-4 mr-2 text-green-400" />5 Lunch Credits (#SayNoToPlastic)</li>
                 </ul>
                 <Button 
-                  onClick={() => document.getElementById('trade-calculator')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => {
+                    const element = document.getElementById('trade-calculator');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      console.error('trade-calculator element not found');
+                    }
+                  }}
                   className="w-full bg-blue-600 hover:bg-blue-700" 
                   data-testid="button-select-standard"
                 >
@@ -108,7 +115,14 @@ export default function IPhone17Campaign() {
                   <li className="flex items-center"><Users className="h-4 w-4 mr-2 text-green-400" />Social Media Bonus Multiplier</li>
                 </ul>
                 <Button 
-                  onClick={() => document.getElementById('trade-calculator')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => {
+                    const element = document.getElementById('trade-calculator');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      console.error('trade-calculator element not found');
+                    }
+                  }}
                   className="w-full bg-emerald-600 hover:bg-emerald-700" 
                   data-testid="button-select-premium"
                 >
@@ -136,7 +150,14 @@ export default function IPhone17Campaign() {
                   <li className="flex items-center"><Trophy className="h-4 w-4 mr-2 text-green-400" />Leaderboard VIP Status</li>
                 </ul>
                 <Button 
-                  onClick={() => document.getElementById('trade-calculator')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => {
+                    const element = document.getElementById('trade-calculator');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      console.error('trade-calculator element not found');
+                    }
+                  }}
                   className="w-full bg-purple-600 hover:bg-purple-700" 
                   data-testid="button-select-elite"
                 >

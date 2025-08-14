@@ -31,7 +31,11 @@ export default function Navigation() {
                 href="#leaderboard"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById('leaderboard')?.scrollIntoView({ behavior: 'smooth' });
+                  if (window.location.pathname === '/') {
+                    document.getElementById('leaderboard')?.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    window.location.href = '/#leaderboard';
+                  }
                 }}
                 className="hover:text-emerald-400 transition-colors"
               >
@@ -49,7 +53,13 @@ export default function Navigation() {
               <span className="text-sm">Join Heroes</span>
             </div>
             <Button 
-              onClick={() => document.getElementById('starter-kit-flow')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => {
+                if (window.location.pathname === '/') {
+                  document.getElementById('starter-kit-flow')?.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  window.location.href = '/#starter-kit-flow';
+                }
+              }}
               className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-6 py-2 rounded-full font-medium transition-all duration-300 shadow-lg"
             >
               Start Journey

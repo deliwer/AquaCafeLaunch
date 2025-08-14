@@ -199,7 +199,10 @@ export default function AquaCafePlans() {
                   Not satisfied with your water quality? Return your system within 30 days for a full refund. 
                   We're confident you'll love the difference.
                 </p>
-                <Button className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-3 text-lg font-semibold">
+                <Button 
+                  onClick={() => window.location.href = '/'}
+                  className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 px-8 py-3 text-lg font-semibold"
+                >
                   Start Your 30-Day Trial
                 </Button>
               </CardContent>

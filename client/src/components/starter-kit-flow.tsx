@@ -167,7 +167,14 @@ export default function StarterKitFlow() {
                               className={`w-full bg-gradient-to-r from-${kit.color}-600 to-${kit.color}-700 hover:from-${kit.color}-700 hover:to-${kit.color}-800 text-white font-semibold py-3`}
                               onClick={() => {
                                 setCurrentStep("checkout");
-                                document.getElementById('professional-tutorial')?.scrollIntoView({ behavior: 'smooth' });
+                                setTimeout(() => {
+                                  const element = document.getElementById('professional-tutorial');
+                                  if (element) {
+                                    element.scrollIntoView({ behavior: 'smooth' });
+                                  } else {
+                                    console.error('professional-tutorial element not found');
+                                  }
+                                }, 100);
                               }}
                             >
                               <CreditCard className="h-4 w-4 mr-2" />
@@ -264,7 +271,14 @@ export default function StarterKitFlow() {
               </div>
 
               <Button 
-                onClick={() => document.getElementById('partnership-program')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  const element = document.getElementById('partnership-program');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    console.error('partnership-program element not found');
+                  }
+                }}
                 className="w-full bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-semibold py-3"
               >
                 <Award className="h-4 w-4 mr-2" />

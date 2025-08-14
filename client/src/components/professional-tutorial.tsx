@@ -183,15 +183,27 @@ export default function ProfessionalTutorial() {
                   <Button
                     onClick={() => {
                       handleComplete();
-                      if (currentStep === 1) {
-                        document.getElementById('starter-kit-flow')?.scrollIntoView({ behavior: 'smooth' });
-                      } else if (currentStep === 2) {
-                        document.getElementById('trade-calculator')?.scrollIntoView({ behavior: 'smooth' });
-                      } else if (currentStep === 4) {
-                        document.getElementById('partnership-program')?.scrollIntoView({ behavior: 'smooth' });
-                      } else if (currentStep === 5) {
-                        document.getElementById('leaderboard')?.scrollIntoView({ behavior: 'smooth' });
-                      }
+                      setTimeout(() => {
+                        let targetId = '';
+                        if (currentStep === 1) {
+                          targetId = 'starter-kit-flow';
+                        } else if (currentStep === 2) {
+                          targetId = 'trade-calculator';
+                        } else if (currentStep === 4) {
+                          targetId = 'partnership-program';
+                        } else if (currentStep === 5) {
+                          targetId = 'leaderboard';
+                        }
+                        
+                        if (targetId) {
+                          const element = document.getElementById(targetId);
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth' });
+                          } else {
+                            console.error(`${targetId} element not found`);
+                          }
+                        }
+                      }, 200);
                     }}
                     disabled={completedSteps.includes(currentStep)}
                     className="bg-emerald-600 hover:bg-emerald-700 text-white"
