@@ -114,13 +114,18 @@ export default function TabbedNavigation({ className = "" }: TabNavigationProps)
   const renderHomeContent = () => (
     <div className="space-y-8">
       {/* Hero Section with Background Image */}
-      <section 
-        className="relative min-h-[70vh] bg-cover bg-center bg-no-repeat rounded-lg overflow-hidden"
-        style={{ backgroundImage: `url(${mobilePurificationHero})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-transparent">
-          <div className="flex items-center justify-center h-full">
-            <div className="max-w-4xl mx-auto px-8">
+      <section className="relative min-h-[70vh] rounded-lg overflow-hidden bg-slate-900">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+          style={{ 
+            backgroundImage: `url(${mobilePurificationHero})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/85 to-slate-900/75">
+          <div className="relative z-10 flex items-center justify-center h-full">
+            <div className="max-w-4xl mx-auto px-8 w-full">
               <DubaiMissionDashboard />
             </div>
           </div>

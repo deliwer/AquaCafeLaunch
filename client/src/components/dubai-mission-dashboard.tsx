@@ -28,29 +28,29 @@ export default function DubaiMissionDashboard() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center py-8 bg-gradient-to-r from-emerald-900/30 to-blue-900/30 rounded-2xl border border-emerald-400/30"
+        className="text-center py-8 bg-gradient-to-r from-emerald-900/50 to-blue-900/50 rounded-2xl border border-emerald-400/50 backdrop-blur-sm"
       >
         <div className="flex items-center justify-center space-x-2 mb-4">
-          <Flag className="h-8 w-8 text-emerald-400" />
-          <h1 className="text-4xl font-bold text-white">WELCOME TO MISSION: SAVE DUBAI 2030</h1>
+          <Flag className="h-8 w-8 text-emerald-400 drop-shadow-lg" />
+          <h1 className="text-4xl font-bold text-white drop-shadow-2xl">WELCOME TO MISSION: SAVE DUBAI 2030</h1>
         </div>
-        <p className="text-xl text-emerald-300 max-w-4xl mx-auto">
+        <p className="text-xl text-emerald-300 max-w-4xl mx-auto drop-shadow-lg font-medium">
           Join the exclusive Founding Heroes program. Get instant trade-in value, premium AquaCafe water system, 
           and become part of Dubai's biggest environmental mission.
         </p>
       </motion.div>
 
       {/* Hero CTA Section */}
-      <Card className="bg-gradient-to-br from-orange-900/20 to-red-900/20 border-orange-500/30">
+      <Card className="bg-gradient-to-br from-orange-900/40 to-red-900/40 border-orange-500/50 backdrop-blur-sm">
         <CardContent className="p-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-2">
+          <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-xl">
             Trade Your Old iPhone for{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400 drop-shadow-lg">
               AED 1,000+
             </span>{" "}
             in Premium Water
           </h2>
-          <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400 mb-4">
+          <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400 mb-4 drop-shadow-lg">
             Become a Dubai Planet Hero
           </h3>
           
@@ -66,7 +66,7 @@ export default function DubaiMissionDashboard() {
             variant="hero"
           />
 
-          <p className="text-slate-300 mt-4 text-lg">
+          <p className="text-slate-200 mt-4 text-lg font-medium drop-shadow-lg">
             Limited spots available.
           </p>
         </CardContent>
