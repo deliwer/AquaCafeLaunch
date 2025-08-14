@@ -15,25 +15,17 @@ export default function Navigation() {
               DeliWer <span className="text-xs bg-achievement-purple px-2 py-1 rounded-full">HEROES</span>
             </div>
             <div className="hidden md:flex space-x-6">
-              <a 
-                href="#trade-calculator"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('trade-calculator')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="hover:text-emerald-400 transition-colors"
-              >
-                Trade Calculator
+              <a href="/aquacafe-plans" className="hover:text-emerald-400 transition-colors">
+                AquaCafe Plans
               </a>
-              <a 
-                href="#aquacafe-service"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('aquacafe-service')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="hover:text-emerald-400 transition-colors"
-              >
-                AquaCafe
+              <a href="/loyalty-rewards" className="hover:text-emerald-400 transition-colors">
+                Loyalty Rewards
+              </a>
+              <a href="/impact-calculator" className="hover:text-emerald-400 transition-colors">
+                Impact Calculator
+              </a>
+              <a href="/partnership" className="hover:text-emerald-400 transition-colors">
+                Partnership
               </a>
               <a 
                 href="#leaderboard"
@@ -44,16 +36,6 @@ export default function Navigation() {
                 className="hover:text-emerald-400 transition-colors"
               >
                 Heroes
-              </a>
-              <a 
-                href="#partnership-program"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('partnership-program')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="hover:text-emerald-400 transition-colors"
-              >
-                Partners
               </a>
             </div>
           </div>
