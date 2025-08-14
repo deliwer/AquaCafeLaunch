@@ -69,55 +69,48 @@ export default function RealTimeCountdown({
       </div>
       
       <div className="flex justify-center space-x-4">
-        <AnimatePresence mode="wait">
-          <div className="flex space-x-4">
-            <motion.div
-              key={timeLeft.hours}
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 20, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="text-center"
-            >
-              <div className="bg-gradient-to-b from-orange-500 to-red-600 rounded-lg p-3 min-w-[60px]">
-                <span className="text-2xl font-bold text-white font-mono">{formatNumber(timeLeft.hours)}</span>
-              </div>
-              <span className="text-xs text-orange-300 mt-1 block">Hours</span>
-            </motion.div>
-            
-            <div className="self-center text-orange-400 text-2xl font-bold">:</div>
-            
-            <motion.div
-              key={timeLeft.minutes}
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 20, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="text-center"
-            >
-              <div className="bg-gradient-to-b from-orange-500 to-red-600 rounded-lg p-3 min-w-[60px]">
-                <span className="text-2xl font-bold text-white font-mono">{formatNumber(timeLeft.minutes)}</span>
-              </div>
-              <span className="text-xs text-orange-300 mt-1 block">Minutes</span>
-            </motion.div>
-            
-            <div className="self-center text-orange-400 text-2xl font-bold">:</div>
-            
-            <motion.div
-              key={timeLeft.seconds}
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 20, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="text-center"
-            >
-              <div className="bg-gradient-to-b from-orange-500 to-red-600 rounded-lg p-3 min-w-[60px]">
-                <span className="text-2xl font-bold text-white font-mono">{formatNumber(timeLeft.seconds)}</span>
-              </div>
-              <span className="text-xs text-orange-300 mt-1 block">Seconds</span>
-            </motion.div>
+        <motion.div
+          key={`hours-${timeLeft.hours}`}
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="text-center"
+        >
+          <div className="bg-gradient-to-b from-orange-500 to-red-600 rounded-lg p-3 min-w-[60px]">
+            <span className="text-2xl font-bold text-white font-mono">{formatNumber(timeLeft.hours)}</span>
           </div>
-        </AnimatePresence>
+          <span className="text-xs text-orange-300 mt-1 block">Hours</span>
+        </motion.div>
+        
+        <div className="self-center text-orange-400 text-2xl font-bold">:</div>
+        
+        <motion.div
+          key={`minutes-${timeLeft.minutes}`}
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="text-center"
+        >
+          <div className="bg-gradient-to-b from-orange-500 to-red-600 rounded-lg p-3 min-w-[60px]">
+            <span className="text-2xl font-bold text-white font-mono">{formatNumber(timeLeft.minutes)}</span>
+          </div>
+          <span className="text-xs text-orange-300 mt-1 block">Minutes</span>
+        </motion.div>
+        
+        <div className="self-center text-orange-400 text-2xl font-bold">:</div>
+        
+        <motion.div
+          key={`seconds-${timeLeft.seconds}`}
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="text-center"
+        >
+          <div className="bg-gradient-to-b from-orange-500 to-red-600 rounded-lg p-3 min-w-[60px]">
+            <span className="text-2xl font-bold text-white font-mono">{formatNumber(timeLeft.seconds)}</span>
+          </div>
+          <span className="text-xs text-orange-300 mt-1 block">Seconds</span>
+        </motion.div>
       </div>
     </div>
   );
